@@ -1,0 +1,893 @@
+curl -X 'POST' \
+  'http://localhost:8000/upload-document' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@CSS.pdf;type=application/pdf'
+Request URL
+http://localhost:8000/upload-document
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "document_id": "a8232da7-3292-4b64-9898-b9c5db19e27e",
+  "chunks_created": 57,
+  "processing_time_ms": 41961.48,
+  "status": "success"
+}
+
+==========================================================================
+
+Curl
+
+curl -X 'POST' \
+  'http://localhost:8000/ask-question-ultra' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "question": "Parlez moi des prestations",
+  "provider": "deepseek",
+  "temperature": 0.3,
+  "max_tokens": 512,
+  "top_k": 3
+}'
+Request URL
+http://localhost:8000/ask-question-ultra
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "id": "5a7866c9-b64f-41f0-81b1-223df97942e1",
+  "answer": "D'après les sources fournies, les prestations sont de deux types : en espèces et en nature.\n\n**Prestations en espèces :**\n- En cas d'accident du travail, elles prennent la forme d'indemnités journalières pour compenser la perte de salaire. Le montant est de la moitié (1/2) du salaire journalier pendant les 28 premiers jours, puis des deux tiers (2/3) à partir du 29e jour. La base de calcul est le salaire journalier moyen des 30 jours précédant l'accident (Source 2 et Source 3).\n- Une rente trimestrielle (ou mensuelle sous condition) est versée à la victime en cas d'incapacité permanente partielle ou totale (Source 3).\n\n**Prestations en nature :**\nElles consistent en une prise en charge gratuite et intégrale des soins médicaux et chirurgicaux, des frais d'hospitalisation, pharmaceutiques, de réadaptation fonctionnelle, d'appareillage, ainsi que des frais funéraires et de transport du corps en cas de décès (Source 3).\n\nPour constituer un dossier et bénéficier de ces prestations, une liste de documents spécifiques est requise (Source 1 et Source 2).",
+  "context_found": true,
+  "provider_used": "deepseek",
+  "model_used": "deepseek-chat",
+  "response_time_ms": 37620.8,
+  "timestamp": "2025-08-27T15:24:16.070132",
+  "search_results": 45,
+  "ranked_results": 3,
+  "enhanced_queries": [
+    "Parlez moi des prestations",
+    "Quels sont les avantages sociaux et les services proposés ?",
+    "Décrivez les différentes offres et services inclus dans le forfait."
+  ],
+  "sources": [
+    {
+      "source_id": 1,
+      "score": 0.4303098958620912,
+      "original_rank": 8,
+      "metadata": {
+        "document_id": "a8232da7-3292-4b64-9898-b9c5db19e27e_chunk_28"
+      }
+    },
+    {
+      "source_id": 2,
+      "score": 0.3208336354059155,
+      "original_rank": 1,
+      "metadata": {
+        "document_id": "a8232da7-3292-4b64-9898-b9c5db19e27e_chunk_3"
+      }
+    },
+    {
+      "source_id": 3,
+      "score": 0.09771532651765824,
+      "original_rank": 2,
+      "metadata": {
+        "document_id": "a8232da7-3292-4b64-9898-b9c5db19e27e_chunk_4"
+      }
+    }
+  ],
+  "performance_metrics": {
+    "search_time_ms": 37620.8,
+    "generation_time_ms": 37620.8,
+    "cache_hits": "metrics_available_via_prometheus"
+  }
+}
+
+
+==========================================================================
+
+Curl
+
+curl -X 'POST' \
+  'http://localhost:8000/ask-question-stream-ultra' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "question": "Parlez moi des prestations",
+  "provider": "deepseek",
+  "temperature": 0.3,
+  "max_tokens": 512,
+  "top_k": 3
+}'
+Request URL
+http://localhost:8000/ask-question-stream-ultra
+Server response
+Code	Details
+200	
+Response body
+Download
+data: {"metadata": {"id": "a9a83a8f-2946-464b-bd26-33aa16be3738", "provider": "deepseek", "enhanced_queries": ["Parlez moi des prestations", "Quels sont les services propos\u00e9s et leurs avantages ?", "D\u00e9crivez l'offre de services disponible"], "timestamp": "2025-08-27T15:39:29.530736"}, "type": "init"}
+
+data: {"content": "D", "type": "chunk"}
+
+data: {"content": "'", "type": "chunk"}
+
+data: {"content": "apr", "type": "chunk"}
+
+data: {"content": "\u00e8s", "type": "chunk"}
+
+data: {"content": " les", "type": "chunk"}
+
+data: {"content": " sources", "type": "chunk"}
+
+data: {"content": " four", "type": "chunk"}
+
+data: {"content": "n", "type": "chunk"}
+
+data: {"content": "ies", "type": "chunk"}
+
+data: {"content": ",", "type": "chunk"}
+
+data: {"content": " les", "type": "chunk"}
+
+data: {"content": " prest", "type": "chunk"}
+
+data: {"content": "ations", "type": "chunk"}
+
+data: {"content": " en", "type": "chunk"}
+
+data: {"content": " esp\u00e8ces", "type": "chunk"}
+
+data: {"content": " comp", "type": "chunk"}
+
+data: {"content": "renn", "type": "chunk"}
+
+data: {"content": "ent", "type": "chunk"}
+
+data: {"content": " principal", "type": "chunk"}
+
+data: {"content": "ement", "type": "chunk"}
+
+data: {"content": " des", "type": "chunk"}
+
+data: {"content": " indemn", "type": "chunk"}
+
+data: {"content": "it\u00e9s", "type": "chunk"}
+
+data: {"content": " journal", "type": "chunk"}
+
+data: {"content": "i\u00e8res", "type": "chunk"}
+
+data: {"content": " vers", "type": "chunk"}
+
+data: {"content": "\u00e9es", "type": "chunk"}
+
+data: {"content": " en", "type": "chunk"}
+
+data: {"content": " cas", "type": "chunk"}
+
+data: {"content": " d", "type": "chunk"}
+
+data: {"content": "'", "type": "chunk"}
+
+data: {"content": "inc", "type": "chunk"}
+
+data: {"content": "apac", "type": "chunk"}
+
+data: {"content": "it", "type": "chunk"}
+
+data: {"content": "\u00e9", "type": "chunk"}
+
+data: {"content": " tempor", "type": "chunk"}
+
+data: {"content": "aire", "type": "chunk"}
+
+data: {"content": ".\n\n", "type": "chunk"}
+
+data: {"content": "Sel", "type": "chunk"}
+
+data: {"content": "on", "type": "chunk"}
+
+data: {"content": " la", "type": "chunk"}
+
+data: {"content": " Source", "type": "chunk"}
+
+data: {"content": " ", "type": "chunk"}
+
+data: {"content": "3", "type": "chunk"}
+
+data: {"content": ",", "type": "chunk"}
+
+data: {"content": " en", "type": "chunk"}
+
+data: {"content": " cas", "type": "chunk"}
+
+data: {"content": " d", "type": "chunk"}
+
+data: {"content": "'acc", "type": "chunk"}
+
+data: {"content": "ident", "type": "chunk"}
+
+data: {"content": " du", "type": "chunk"}
+
+data: {"content": " travail", "type": "chunk"}
+
+data: {"content": ",", "type": "chunk"}
+
+data: {"content": " les", "type": "chunk"}
+
+data: {"content": " prest", "type": "chunk"}
+
+data: {"content": "ations", "type": "chunk"}
+
+data: {"content": " en", "type": "chunk"}
+
+data: {"content": " esp\u00e8ces", "type": "chunk"}
+
+data: {"content": " pour", "type": "chunk"}
+
+data: {"content": " une", "type": "chunk"}
+
+data: {"content": " incapac", "type": "chunk"}
+
+data: {"content": "it\u00e9", "type": "chunk"}
+
+data: {"content": " tempor", "type": "chunk"}
+
+data: {"content": "aire", "type": "chunk"}
+
+data: {"content": " sont", "type": "chunk"}
+
+data: {"content": " des", "type": "chunk"}
+
+data: {"content": " **", "type": "chunk"}
+
+data: {"content": "ind", "type": "chunk"}
+
+data: {"content": "emn", "type": "chunk"}
+
+data: {"content": "it\u00e9s", "type": "chunk"}
+
+data: {"content": " journal", "type": "chunk"}
+
+data: {"content": "i\u00e8res", "type": "chunk"}
+
+data: {"content": "**", "type": "chunk"}
+
+data: {"content": " qui", "type": "chunk"}
+
+data: {"content": " ont", "type": "chunk"}
+
+data: {"content": " pour", "type": "chunk"}
+
+data: {"content": " but", "type": "chunk"}
+
+data: {"content": " de", "type": "chunk"}
+
+data: {"content": " compens", "type": "chunk"}
+
+data: {"content": "er", "type": "chunk"}
+
+data: {"content": " la", "type": "chunk"}
+
+data: {"content": " per", "type": "chunk"}
+
+data: {"content": "te", "type": "chunk"}
+
+data: {"content": " de", "type": "chunk"}
+
+data: {"content": " sal", "type": "chunk"}
+
+data: {"content": "aire", "type": "chunk"}
+
+data: {"content": ".", "type": "chunk"}
+
+data: {"content": " Le", "type": "chunk"}
+
+data: {"content": " mont", "type": "chunk"}
+
+data: {"content": "ant", "type": "chunk"}
+
+data: {"content": " de", "type": "chunk"}
+
+data: {"content": " cette", "type": "chunk"}
+
+data: {"content": " indemn", "type": "chunk"}
+
+data: {"content": "it\u00e9", "type": "chunk"}
+
+data: {"content": " est", "type": "chunk"}
+
+data: {"content": " fix", "type": "chunk"}
+
+data: {"content": "\u00e9", "type": "chunk"}
+
+data: {"content": " \u00e0", "type": "chunk"}
+
+data: {"content": " **", "type": "chunk"}
+
+data: {"content": "la", "type": "chunk"}
+
+data: {"content": " mo", "type": "chunk"}
+
+data: {"content": "iti\u00e9", "type": "chunk"}
+
+data: {"content": " (", "type": "chunk"}
+
+data: {"content": "1", "type": "chunk"}
+
+data: {"content": "/", "type": "chunk"}
+
+data: {"content": "2", "type": "chunk"}
+
+data: {"content": ")", "type": "chunk"}
+
+data: {"content": " du", "type": "chunk"}
+
+data: {"content": " sal", "type": "chunk"}
+
+data: {"content": "aire", "type": "chunk"}
+
+data: {"content": " journal", "type": "chunk"}
+
+data: {"content": "ier", "type": "chunk"}
+
+data: {"content": "**", "type": "chunk"}
+
+data: {"content": " pendant", "type": "chunk"}
+
+data: {"content": " les", "type": "chunk"}
+
+data: {"content": " ", "type": "chunk"}
+
+data: {"content": "28", "type": "chunk"}
+
+data: {"content": " premiers", "type": "chunk"}
+
+data: {"content": " jours", "type": "chunk"}
+
+data: {"content": ".", "type": "chunk"}
+
+data: {"content": "\n\n", "type": "chunk"}
+
+data: {"content": "Pour", "type": "chunk"}
+
+data: {"content": " constitu", "type": "chunk"}
+
+data: {"content": "er", "type": "chunk"}
+
+data: {"content": " un", "type": "chunk"}
+
+data: {"content": " dossier", "type": "chunk"}
+
+data: {"content": " et", "type": "chunk"}
+
+data: {"content": " b\u00e9n\u00e9", "type": "chunk"}
+
+data: {"content": "fic", "type": "chunk"}
+
+data: {"content": "ier", "type": "chunk"}
+
+data: {"content": " de", "type": "chunk"}
+
+data: {"content": " ces", "type": "chunk"}
+
+data: {"content": " prest", "type": "chunk"}
+
+data: {"content": "ations", "type": "chunk"}
+
+data: {"content": ",", "type": "chunk"}
+
+data: {"content": " une", "type": "chunk"}
+
+data: {"content": " liste", "type": "chunk"}
+
+data: {"content": " de", "type": "chunk"}
+
+data: {"content": " documents", "type": "chunk"}
+
+data: {"content": " est", "type": "chunk"}
+
+data: {"content": " requ", "type": "chunk"}
+
+data: {"content": "ise", "type": "chunk"}
+
+data: {"content": ".", "type": "chunk"}
+
+data: {"content": " Les", "type": "chunk"}
+
+data: {"content": " Sources", "type": "chunk"}
+
+data: {"content": " ", "type": "chunk"}
+
+data: {"content": "1", "type": "chunk"}
+
+data: {"content": " et", "type": "chunk"}
+
+data: {"content": " ", "type": "chunk"}
+
+data: {"content": "2", "type": "chunk"}
+
+data: {"content": " list", "type": "chunk"}
+
+data: {"content": "ent", "type": "chunk"}
+
+data: {"content": " les", "type": "chunk"}
+
+data: {"content": " documents", "type": "chunk"}
+
+data: {"content": " n\u00e9cess", "type": "chunk"}
+
+data: {"content": "aires", "type": "chunk"}
+
+data: {"content": " pour", "type": "chunk"}
+
+data: {"content": " une", "type": "chunk"}
+
+data: {"content": " demande", "type": "chunk"}
+
+data: {"content": " de", "type": "chunk"}
+
+data: {"content": " prest", "type": "chunk"}
+
+data: {"content": "ations", "type": "chunk"}
+
+data: {"content": ",", "type": "chunk"}
+
+data: {"content": " qui", "type": "chunk"}
+
+data: {"content": " incl", "type": "chunk"}
+
+data: {"content": "uent", "type": "chunk"}
+
+data: {"content": " notamment", "type": "chunk"}
+
+data: {"content": " une", "type": "chunk"}
+
+data: {"content": " demande", "type": "chunk"}
+
+data: {"content": " de", "type": "chunk"}
+
+data: {"content": " prest", "type": "chunk"}
+
+data: {"content": "ations", "type": "chunk"}
+
+data: {"content": ",", "type": "chunk"}
+
+data: {"content": " des", "type": "chunk"}
+
+data: {"content": " extra", "type": "chunk"}
+
+data: {"content": "its", "type": "chunk"}
+
+data: {"content": " d", "type": "chunk"}
+
+data: {"content": "'", "type": "chunk"}
+
+data: {"content": "act", "type": "chunk"}
+
+data: {"content": "e", "type": "chunk"}
+
+data: {"content": " de", "type": "chunk"}
+
+data: {"content": " na", "type": "chunk"}
+
+data: {"content": "issance", "type": "chunk"}
+
+data: {"content": ",", "type": "chunk"}
+
+data: {"content": " un", "type": "chunk"}
+
+data: {"content": " act", "type": "chunk"}
+
+data: {"content": "e", "type": "chunk"}
+
+data: {"content": " de", "type": "chunk"}
+
+data: {"content": " mari", "type": "chunk"}
+
+data: {"content": "age", "type": "chunk"}
+
+data: {"content": ",", "type": "chunk"}
+
+data: {"content": " des", "type": "chunk"}
+
+data: {"content": " certific", "type": "chunk"}
+
+data: {"content": "ats", "type": "chunk"}
+
+data: {"content": " m\u00e9dic", "type": "chunk"}
+
+data: {"content": "aux", "type": "chunk"}
+
+data: {"content": " et", "type": "chunk"}
+
+data: {"content": " de", "type": "chunk"}
+
+data: {"content": " sc", "type": "chunk"}
+
+data: {"content": "olar", "type": "chunk"}
+
+data: {"content": "it\u00e9", "type": "chunk"}
+
+data: {"content": " selon", "type": "chunk"}
+
+data: {"content": " l", "type": "chunk"}
+
+data: {"content": "'", "type": "chunk"}
+
+data: {"content": "\u00e2ge", "type": "chunk"}
+
+data: {"content": " des", "type": "chunk"}
+
+data: {"content": " enfants", "type": "chunk"}
+
+data: {"content": ",", "type": "chunk"}
+
+data: {"content": " une", "type": "chunk"}
+
+data: {"content": " d\u00e9cl", "type": "chunk"}
+
+data: {"content": "aration", "type": "chunk"}
+
+data: {"content": " de", "type": "chunk"}
+
+data: {"content": " mouvement", "type": "chunk"}
+
+data: {"content": " de", "type": "chunk"}
+
+data: {"content": " travail", "type": "chunk"}
+
+data: {"content": "leur", "type": "chunk"}
+
+data: {"content": " et", "type": "chunk"}
+
+data: {"content": " un", "type": "chunk"}
+
+data: {"content": " certific", "type": "chunk"}
+
+data: {"content": "at", "type": "chunk"}
+
+data: {"content": " de", "type": "chunk"}
+
+data: {"content": " vie", "type": "chunk"}
+
+data: {"content": " collect", "type": "chunk"}
+
+data: {"content": "if", "type": "chunk"}
+
+data: {"content": ".\n\n", "type": "chunk"}
+
+data: {"content": "*", "type": "chunk"}
+
+data: {"content": "Source", "type": "chunk"}
+
+data: {"content": " ", "type": "chunk"}
+
+data: {"content": "1", "type": "chunk"}
+
+data: {"content": ":", "type": "chunk"}
+
+data: {"content": " [", "type": "chunk"}
+
+data: {"content": "Page", "type": "chunk"}
+
+data: {"content": " ", "type": "chunk"}
+
+data: {"content": "20", "type": "chunk"}
+
+data: {"content": "]", "type": "chunk"}
+
+data: {"content": " Les", "type": "chunk"}
+
+data: {"content": " Pre", "type": "chunk"}
+
+data: {"content": "stations", "type": "chunk"}
+
+data: {"content": " en", "type": "chunk"}
+
+data: {"content": " Esp", "type": "chunk"}
+
+data: {"content": "\u00e8ces", "type": "chunk"}
+
+data: {"content": "*\n", "type": "chunk"}
+
+data: {"content": "*", "type": "chunk"}
+
+data: {"content": "Source", "type": "chunk"}
+
+data: {"content": " ", "type": "chunk"}
+
+data: {"content": "2", "type": "chunk"}
+
+data: {"content": ":", "type": "chunk"}
+
+data: {"content": " [", "type": "chunk"}
+
+data: {"content": "Page", "type": "chunk"}
+
+data: {"content": " ", "type": "chunk"}
+
+data: {"content": "20", "type": "chunk"}
+
+data: {"content": "]", "type": "chunk"}
+
+data: {"content": " Les", "type": "chunk"}
+
+data: {"content": " Pre", "type": "chunk"}
+
+data: {"content": "stations", "type": "chunk"}
+
+data: {"content": " en", "type": "chunk"}
+
+data: {"content": " Esp", "type": "chunk"}
+
+data: {"content": "\u00e8ces", "type": "chunk"}
+
+data: {"content": "*\n", "type": "chunk"}
+
+data: {"content": "*", "type": "chunk"}
+
+data: {"content": "Source", "type": "chunk"}
+
+data: {"content": " ", "type": "chunk"}
+
+data: {"content": "3", "type": "chunk"}
+
+data: {"content": ":", "type": "chunk"}
+
+data: {"content": " Les", "type": "chunk"}
+
+data: {"content": " prest", "type": "chunk"}
+
+data: {"content": "ations", "type": "chunk"}
+
+data: {"content": " accord", "type": "chunk"}
+
+data: {"content": "\u00e9es", "type": "chunk"}
+
+data: {"content": "*", "type": "chunk"}
+
+data: {"metadata": {"response_time_ms": 34039.61, "search_results": 45, "ranked_results": 3}, "type": "final"}
+
+
+==========================================================================
+
+
+curl -X 'POST' \
+  'http://localhost:8000/ask-multimodal-question' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "question": "Parlez moi des prestations",
+  "provider": "deepseek",
+  "temperature": 0.3,
+  "max_tokens": 512,
+  "top_k": 3,
+  "content_types": [
+    "document"
+  ],
+  "include_images": true,
+  "multimodal_boost": 0.1
+}'
+Request URL
+http://localhost:8000/ask-multimodal-question
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "id": "b1927564-64fa-4eed-aba7-722a90bdb89a",
+  "answer": "D'après les sources fournies, les prestations sont de deux types : en espèces et en nature.\n\n**Prestations en espèces (Source 2 et 3) :**\n*   Elles comprennent des indemnités journalières versées en cas d'incapacité temporaire pour compenser la perte de salaire.\n*   Le montant est de la moitié (1/2) du salaire journalier moyen des 30 jours précédant l'accident pendant les 28 premiers jours, puis des deux tiers (2/3) à partir du 29e jour.\n*   Le paiement peut se faire par procuration à la victime ou à l'employeur.\n\n**Prestations en nature (Source 3) :**\nIl s'agit d'une prise en charge gratuite et intégrale des éléments suivants :\n*   Soins médicaux et chirurgicaux\n*   Frais d'hospitalisation et pharmaceutiques\n*   Réadaptation fonctionnelle et appareillage\n*   Réparation et remplacement des prothèses\n*   Frais funéraires (limités), de transport du corps et de déplacement\n\n**Autres prestations mentionnées :**\n*   En cas d'incapacité permanente (IPP ou IPT), une rente trimestrielle est versée à la victime (Source 3).\n*   La Source 1 énumère les documents requis pour constituer un dossier de demande de prestations, mais ne décrit pas les prestations elles-mêmes.",
+  "context_found": true,
+  "provider_used": "deepseek",
+  "model_used": "deepseek-chat",
+  "response_time_ms": 43224.3,
+  "timestamp": "2025-08-27T16:54:41.203160",
+  "search_results": 45,
+  "ranked_results": 3,
+  "enhanced_queries": [
+    "Parlez moi des prestations",
+    "Quels sont les avantages sociaux et les services proposés ?",
+    "Décrivez les différentes offres incluses dans le forfait."
+  ],
+  "sources": [
+    {
+      "source_id": 1,
+      "score": 0.4303081375250703,
+      "original_rank": 8,
+      "metadata": {
+        "document_id": "a8232da7-3292-4b64-9898-b9c5db19e27e_chunk_28"
+      }
+    },
+    {
+      "source_id": 2,
+      "score": 0.32083417557300875,
+      "original_rank": 1,
+      "metadata": {
+        "document_id": "a8232da7-3292-4b64-9898-b9c5db19e27e_chunk_3"
+      }
+    },
+    {
+      "source_id": 3,
+      "score": 0.09771559473855973,
+      "original_rank": 2,
+      "metadata": {
+        "document_id": "a8232da7-3292-4b64-9898-b9c5db19e27e_chunk_4"
+      }
+    }
+  ],
+  "performance_metrics": {
+    "search_time_ms": 43224.3,
+    "generation_time_ms": 43224.3,
+    "cache_hits": "metrics_available_via_prometheus"
+  }
+}
+
+======================================================================================
+
+
+Curl
+
+curl -X 'GET' \
+  'http://localhost:8000/documents-advanced' \
+  -H 'accept: application/json'
+Request URL
+http://localhost:8000/documents-advanced
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "documents": [
+    {
+      "document_id": "a8232da7-3292-4b64-9898-b9c5db19e27e",
+      "total_chunks": 57,
+      "chunk_types": {
+        "structured": 46,
+        "fragment": 10,
+        "paragraph": 1
+      },
+      "total_length": 40602
+    }
+  ],
+  "summary": {
+    "total_documents": 1,
+    "total_chunks": 57,
+    "average_chunks_per_doc": 57
+  }
+}
+
+
+=================================================================================================
+
+curl -X 'GET' \
+  'http://localhost:8000/multimodal-documents' \
+  -H 'accept: application/json'
+Request URL
+http://localhost:8000/multimodal-documents
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "documents": [
+    {
+      "document_id": "a8232da7-3292-4b64-9898-b9c5db19e27e",
+      "content_type": "text",
+      "total_chunks": 57,
+      "chunk_types": {
+        "structured": 46,
+        "fragment": 10,
+        "paragraph": 1
+      },
+      "total_length": 40602,
+      "has_images": false,
+      "has_captions": false,
+      "has_ocr_text": false,
+      "modalities": [
+        "text"
+      ]
+    }
+  ],
+  "summary": {
+    "total_documents": 1,
+    "total_chunks": 57,
+    "image_documents": 0,
+    "text_documents": 1,
+    "average_chunks_per_doc": 57,
+    "multimodal_capabilities": {
+      "supports_images": true,
+      "supports_ocr": true,
+      "supports_captions": true,
+      "supports_hybrid_search": true
+    }
+  }
+}
+
+========================================================================
+
+Curl
+
+curl -X 'DELETE' \
+  'http://localhost:8000/documents/a8232da7-3292-4b64-9898-b9c5db19e27e' \
+  -H 'accept: application/json'
+Request URL
+http://localhost:8000/documents/a8232da7-3292-4b64-9898-b9c5db19e27e
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "message": "Document 'a8232da7-3292-4b64-9898-b9c5db19e27e' supprimé avec succès",
+  "actions": [
+    "Suppression chunks ChromaDB",
+    "Reconstruction index BM25",
+    "Nettoyage cache"
+  ]
+}
+
+====================================================
+
+curl -X 'GET' \
+  'http://localhost:8000/multimodal-capabilities' \
+  -H 'accept: application/json'
+Request URL
+http://localhost:8000/multimodal-capabilities
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "multimodal_enabled": true,
+  "supported_modalities": [
+    "text",
+    "image",
+    "video",
+    "audio"
+  ],
+  "supported_content_types": [
+    "document",
+    "image",
+    "ocr_text",
+    "image_caption",
+    "mixed"
+  ],
+  "supported_image_formats": [
+    ".jpg",
+    ".webp",
+    ".jpeg",
+    ".gif",
+    ".png",
+    ".bmp",
+    ".tiff"
+  ],
+  "models_status": {
+    "clip": "loaded",
+    "blip": "loaded",
+    "ocr": "available"
+  },
+  "features": {
+    "image_search": true,
+    "text_extraction_ocr": true,
+    "image_captioning": true,
+    "hybrid_text_image_search": true,
+    "cross_modal_retrieval": true,
+    "query_with_image": true
+  },
+  "device": "cpu",
+  "models_info": {
+    "clip_model": "openai/clip-vit-base-patch32",
+    "blip_model": "Salesforce/blip-image-captioning-base",
+    "embedding_model": "sentence-transformers/clip-ViT-B-32-multilingual-v1"
+  }
+}

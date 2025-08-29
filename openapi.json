@@ -1,0 +1,986 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "CSS RAG Multimodal API",
+        "description": "API RAG multimodale avec recherche hybride, re-ranking et optimisations avancées",
+        "version": "2005.0.3"
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "summary": "API RAG Multimodal",
+                "description": "Point d'entrée principal de l'API",
+                "operationId": "root__get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "summary": "Health check avancé",
+                "description": "Vérification de santé complète du système",
+                "operationId": "health_check_health_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/metrics": {
+            "get": {
+                "summary": "Métriques Prometheus",
+                "description": "Endpoint pour Prometheus",
+                "operationId": "metrics_metrics_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/performance-metrics": {
+            "get": {
+                "summary": "Métriques de performance",
+                "description": "Métriques détaillées de performance",
+                "operationId": "get_performance_metrics_performance_metrics_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/upload-document": {
+            "post": {
+                "summary": "Upload document optimisé",
+                "description": "Upload et traitement optimisé de document",
+                "operationId": "upload_document_optimized_upload_document_post",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_upload_document_optimized_upload_document_post"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DocumentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ask-question-ultra": {
+            "post": {
+                "summary": "Question ultra optimisée",
+                "description": "Endpoint de question ultra optimisé avec métriques",
+                "operationId": "ask_question_ultra_ask_question_ultra_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/QuestionRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdvancedQuestionResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ask-question-stream-ultra": {
+            "post": {
+                "summary": "Question streaming ultra optimisée",
+                "description": "Version streaming de la question ultra optimisée",
+                "operationId": "ask_question_stream_ultra_ask_question_stream_ultra_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/QuestionRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/clear-cache": {
+            "post": {
+                "summary": "Vider le cache",
+                "description": "Vider tous les caches",
+                "operationId": "clear_cache_clear_cache_post",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/upload-multimodal-document": {
+            "post": {
+                "summary": "Upload document multimodal",
+                "description": "Upload de document multimodal (texte, image, mixte)",
+                "operationId": "upload_multimodal_document_upload_multimodal_document_post",
+                "parameters": [
+                    {
+                        "name": "extract_text",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "default": true,
+                            "title": "Extract Text"
+                        }
+                    },
+                    {
+                        "name": "generate_captions",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "default": true,
+                            "title": "Generate Captions"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_upload_multimodal_document_upload_multimodal_document_post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ask-multimodal-question": {
+            "post": {
+                "summary": "Question multimodale",
+                "description": "Question avec recherche multimodale (texte + images)",
+                "operationId": "ask_multimodal_question_ask_multimodal_question_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MultimodalQuestionRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ask-multimodal-with-image": {
+            "post": {
+                "summary": "Question avec image de requête",
+                "description": "Question multimodale avec image de requête optionnelle",
+                "operationId": "ask_multimodal_with_image_ask_multimodal_with_image_post",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_ask_multimodal_with_image_ask_multimodal_with_image_post"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/documents-advanced": {
+            "get": {
+                "summary": "Liste documents avec métadonnées",
+                "description": "Liste avancée des documents avec statistiques",
+                "operationId": "list_documents_advanced_documents_advanced_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/multimodal-documents": {
+            "get": {
+                "summary": "Liste documents multimodaux",
+                "description": "Liste des documents avec informations multimodales",
+                "operationId": "list_multimodal_documents_multimodal_documents_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/documents/{document_id}": {
+            "delete": {
+                "summary": "Suppression avancée document",
+                "description": "Suppression avancée avec nettoyage complet",
+                "operationId": "delete_document_advanced_documents__document_id__delete",
+                "parameters": [
+                    {
+                        "name": "document_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Document Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/multimodal-capabilities": {
+            "get": {
+                "summary": "Capacités multimodales",
+                "description": "Information sur les capacités multimodales du système",
+                "operationId": "get_multimodal_capabilities_multimodal_capabilities_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/analyze-image": {
+            "post": {
+                "summary": "Analyse d'image standalone",
+                "description": "Analyse complète d'une image sans l'ajouter à la base",
+                "operationId": "analyze_image_analyze_image_post",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_analyze_image_analyze_image_post"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/search-by-image": {
+            "post": {
+                "summary": "Recherche par similarité d'image",
+                "description": "Recherche de documents similaires à une image donnée",
+                "operationId": "search_by_image_search_by_image_post",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_search_by_image_search_by_image_post"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/health-multimodal": {
+            "get": {
+                "summary": "Health check multimodal",
+                "description": "Health check spécifique aux fonctionnalités multimodales",
+                "operationId": "health_check_multimodal_health_multimodal_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/multimodal": {
+            "get": {
+                "summary": "API RAG Multimodal Info",
+                "operationId": "multimodal_info_multimodal_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AdvancedQuestionResponse": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Id"
+                    },
+                    "answer": {
+                        "type": "string",
+                        "title": "Answer"
+                    },
+                    "context_found": {
+                        "type": "boolean",
+                        "title": "Context Found"
+                    },
+                    "provider_used": {
+                        "type": "string",
+                        "title": "Provider Used"
+                    },
+                    "model_used": {
+                        "type": "string",
+                        "title": "Model Used"
+                    },
+                    "response_time_ms": {
+                        "type": "number",
+                        "title": "Response Time Ms"
+                    },
+                    "timestamp": {
+                        "type": "string",
+                        "title": "Timestamp"
+                    },
+                    "search_results": {
+                        "type": "integer",
+                        "title": "Search Results"
+                    },
+                    "ranked_results": {
+                        "type": "integer",
+                        "title": "Ranked Results"
+                    },
+                    "enhanced_queries": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Enhanced Queries"
+                    },
+                    "sources": {
+                        "items": {
+                            "additionalProperties": true,
+                            "type": "object"
+                        },
+                        "type": "array",
+                        "title": "Sources"
+                    },
+                    "performance_metrics": {
+                        "additionalProperties": true,
+                        "type": "object",
+                        "title": "Performance Metrics"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "answer",
+                    "context_found",
+                    "provider_used",
+                    "model_used",
+                    "response_time_ms",
+                    "timestamp",
+                    "search_results",
+                    "ranked_results",
+                    "enhanced_queries",
+                    "sources",
+                    "performance_metrics"
+                ],
+                "title": "AdvancedQuestionResponse"
+            },
+            "Body_analyze_image_analyze_image_post": {
+                "properties": {
+                    "file": {
+                        "type": "string",
+                        "format": "binary",
+                        "title": "File"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "file"
+                ],
+                "title": "Body_analyze_image_analyze_image_post"
+            },
+            "Body_ask_multimodal_with_image_ask_multimodal_with_image_post": {
+                "properties": {
+                    "question": {
+                        "type": "string",
+                        "title": "Question"
+                    },
+                    "provider": {
+                        "$ref": "#/components/schemas/Provider",
+                        "default": "mistral"
+                    },
+                    "top_k": {
+                        "type": "integer",
+                        "title": "Top K",
+                        "default": 3
+                    },
+                    "temperature": {
+                        "type": "number",
+                        "title": "Temperature",
+                        "default": 0.3
+                    },
+                    "max_tokens": {
+                        "type": "integer",
+                        "title": "Max Tokens",
+                        "default": 512
+                    },
+                    "query_image": {
+                        "type": "string",
+                        "format": "binary",
+                        "title": "Query Image"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "question"
+                ],
+                "title": "Body_ask_multimodal_with_image_ask_multimodal_with_image_post"
+            },
+            "Body_search_by_image_search_by_image_post": {
+                "properties": {
+                    "file": {
+                        "type": "string",
+                        "format": "binary",
+                        "title": "File"
+                    },
+                    "top_k": {
+                        "type": "integer",
+                        "title": "Top K",
+                        "default": 5
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "file"
+                ],
+                "title": "Body_search_by_image_search_by_image_post"
+            },
+            "Body_upload_document_optimized_upload_document_post": {
+                "properties": {
+                    "file": {
+                        "type": "string",
+                        "format": "binary",
+                        "title": "File"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "file"
+                ],
+                "title": "Body_upload_document_optimized_upload_document_post"
+            },
+            "Body_upload_multimodal_document_upload_multimodal_document_post": {
+                "properties": {
+                    "file": {
+                        "type": "string",
+                        "format": "binary",
+                        "title": "File"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "file"
+                ],
+                "title": "Body_upload_multimodal_document_upload_multimodal_document_post"
+            },
+            "ContentType": {
+                "type": "string",
+                "enum": [
+                    "document",
+                    "image",
+                    "ocr_text",
+                    "image_caption",
+                    "mixed"
+                ],
+                "title": "ContentType"
+            },
+            "DocumentResponse": {
+                "properties": {
+                    "document_id": {
+                        "type": "string",
+                        "title": "Document Id"
+                    },
+                    "chunks_created": {
+                        "type": "integer",
+                        "title": "Chunks Created"
+                    },
+                    "processing_time_ms": {
+                        "type": "number",
+                        "title": "Processing Time Ms"
+                    },
+                    "status": {
+                        "type": "string",
+                        "title": "Status"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "document_id",
+                    "chunks_created",
+                    "processing_time_ms",
+                    "status"
+                ],
+                "title": "DocumentResponse"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "MultimodalQuestionRequest": {
+                "properties": {
+                    "question": {
+                        "type": "string",
+                        "title": "Question"
+                    },
+                    "provider": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/Provider"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "default": "mistral"
+                    },
+                    "model": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Model"
+                    },
+                    "temperature": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Temperature",
+                        "default": 0.3
+                    },
+                    "max_tokens": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Max Tokens",
+                        "default": 512
+                    },
+                    "top_k": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Top K",
+                        "default": 3
+                    },
+                    "content_types": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "$ref": "#/components/schemas/ContentType"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Content Types",
+                        "description": "Types de contenu à rechercher",
+                        "default": [
+                            "document",
+                            "image"
+                        ]
+                    },
+                    "include_images": {
+                        "type": "boolean",
+                        "title": "Include Images",
+                        "description": "Inclure les résultats d'images",
+                        "default": true
+                    },
+                    "multimodal_boost": {
+                        "type": "number",
+                        "title": "Multimodal Boost",
+                        "description": "Boost pour les résultats multimodaux",
+                        "default": 0.1
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "question"
+                ],
+                "title": "MultimodalQuestionRequest"
+            },
+            "Provider": {
+                "type": "string",
+                "enum": [
+                    "mistral",
+                    "openai",
+                    "anthropic",
+                    "deepseek",
+                    "groq"
+                ],
+                "title": "Provider"
+            },
+            "QuestionRequest": {
+                "properties": {
+                    "question": {
+                        "type": "string",
+                        "title": "Question"
+                    },
+                    "provider": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/Provider"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "default": "mistral"
+                    },
+                    "model": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Model"
+                    },
+                    "temperature": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Temperature",
+                        "default": 0.3
+                    },
+                    "max_tokens": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Max Tokens",
+                        "default": 512
+                    },
+                    "top_k": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Top K",
+                        "default": 3
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "question"
+                ],
+                "title": "QuestionRequest"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            }
+        }
+    }
+}
