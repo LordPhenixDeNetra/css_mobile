@@ -1,10 +1,12 @@
 import 'dart:io';
+import 'package:css_ipres/config/url_config.dart';
 import 'package:dio/dio.dart';
 import '../models/api_models.dart';
 
 /// Configuration de l'API
 class ApiConfig {
-  static const String baseUrl = 'http://192.168.1.90:8000';
+  // static const String baseUrl = 'http://192.168.1.90:8000';
+  static const String baseUrl = UrlConfig.baseUrl;
   static const Duration timeout = Duration(seconds: 30);
   
   // Configuration par défaut pour l'endpoint multimodal
