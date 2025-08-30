@@ -40,6 +40,9 @@ class _ChatPageContentState extends State<_ChatPageContent> {
     final text = _messageController.text.trim();
     if (text.isEmpty) return;
 
+    // Masquer le clavier
+    FocusScope.of(context).unfocus();
+    
     final chatProvider = Provider.of<ChatProvider>(context, listen: false);
     chatProvider.sendMessage(text);
     _messageController.clear();

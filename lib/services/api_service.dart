@@ -6,8 +6,8 @@ import '../models/api_models.dart';
 /// Configuration de l'API
 class ApiConfig {
   // static const String baseUrl = 'http://192.168.1.90:8000';
-  static const String baseUrl = UrlConfig.baseUrl;
-  static const Duration timeout = Duration(seconds: 30);
+  static String baseUrl = UrlConfig.baseUrl;
+  static const Duration timeout = Duration(seconds: 60);
   
   // Configuration par défaut pour l'endpoint multimodal
   static const ApiEndpoint defaultEndpoint = ApiEndpoint.askMultimodal;
